@@ -3,7 +3,7 @@ from threading import Thread
 
 app = Flask('')
 
-def healthcheck(client):
+def health_check(client):
 
   @app.route('/')
   def home():
