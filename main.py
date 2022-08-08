@@ -9,6 +9,8 @@ from actions.toArchive import toArchive
 from actions.stale import stale
 from lookup import activeCategoryNames
 
+from health_check import health_check
+
 token = os.environ['TOKEN']
 
 client = discord.Client()
