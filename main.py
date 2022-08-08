@@ -11,7 +11,7 @@ from lookup import activeCategoryNames
 
 from health_check import health_check
 
-token = os.environ['TOKEN']
+token = os.environ['$TOKEN']
 
 client = discord.Client()
 
@@ -136,4 +136,5 @@ async def on_message(message):
                   f'Restored channel to {restored_category_name} based on activity!'
               )
           
+health_check(client)
 client.run(token)
