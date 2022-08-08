@@ -1,6 +1,8 @@
-# Python-hellofly-flask
+# alphacron3.0
 
-In our Hands-On section, we show how to deploy a deployable image file using Flyctl. Now we are going to deploy an application from source. In this _Getting Started_ article, we look at how to deploy a Python application on Fly. 
+# adapted from Python-hello-fly-flask, with FLyctl setup for that project is...
+
+In our Hands-On section, we show how to deploy a deployable image file using Flyctl. Now we are going to deploy an application from source. In this _Getting Started_ article, we look at how to deploy a Python application on Fly.
 
 ## _The Hellofly-python Application_
 
@@ -19,19 +21,18 @@ def hello(name=None):
     return render_template('hello.html', name=name)
 ```
 
-Flask is set up to route request to a `hello` function which in turn passes a `name` value  (taken from the requests path)to a function to render a template. The template resides in the `templates` directory under the name `hello.html`. It too is very simple too:
+Flask is set up to route request to a `hello` function which in turn passes a `name` value (taken from the requests path)to a function to render a template. The template resides in the `templates` directory under the name `hello.html`. It too is very simple too:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-</head>
-<body>
-<h1>Hello from Fly</h1>
-{% if name %}
-<h2>and hello to {{name}}</h2>
-{% endif %}
-</body>
+  <head> </head>
+  <body>
+    <h1>Hello from Fly</h1>
+    {% if name %}
+    <h2>and hello to {{name}}</h2>
+    {% endif %}
+  </body>
 </html>
 ```
 
@@ -54,6 +55,7 @@ Flask apps are run with the `flask run` command, but before you do that, you nee
 ```cmd
 FLASK_APP=hellofly flask run
 ```
+
 ```out
  * Serving Flask app "hellofly"
  * Environment: production
@@ -61,7 +63,7 @@ FLASK_APP=hellofly flask run
    Use a production WSGI server instead.
  * Debug mode: off
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
- ```
+```
 
 This will run our hellofly app and you should be able to connect to it locally on localhost:5000.
 
@@ -78,13 +80,14 @@ Each Fly application needs a `fly.toml` file to tell the system how we'd like to
 ```cmd
 flyctl launch
 ```
+
 ```output
 Creating app in /<path>/python-hellofly-flask
 Scanning source code
 Detected a Python app
 Using the following build configuration:
         Builder: paketobuildpacks/builder:base
-Selected App Name: 
+Selected App Name:
 ? Select region: lhr (London, United Kingdom)
 Created app hellofly-flask in organization personal
 Wrote config file fly.toml
@@ -155,7 +158,7 @@ processes = []
     timeout = "2s"
 ```
 
-The `flyctl` command will always refer to this file in the current directory if it exists, specifically for the `app` name/value at the start. That name will be used to identify the application to the Fly service. The rest of the file contains settings to be applied to the application when it deploys. 
+The `flyctl` command will always refer to this file in the current directory if it exists, specifically for the `app` name/value at the start. That name will be used to identify the application to the Fly service. The rest of the file contains settings to be applied to the application when it deploys.
 
 We'll have more details about these properties as we progress, but for now, it's enough to say that they mostly configure which ports the application will be visible on.
 
@@ -176,6 +179,7 @@ Now the application has been deployed, let's find out more about its deployment.
 ```cmd
 flyctl status
 ```
+
 ```output
 App
   Name     = hellofly-python
@@ -196,15 +200,13 @@ ID       VERSION REGION DESIRED STATUS  HEALTH CHECKS      RESTARTS CREATED
 0530d622 0       lhr    run     running 1 total, 1 passing 0        40s ago
 ```
 
-As you can see, the application has been with a DNS hostname of `hellofly-python.fly.dev`, and an instance is running in London. Your deployment's name will, of course, be different. 
+As you can see, the application has been with a DNS hostname of `hellofly-python.fly.dev`, and an instance is running in London. Your deployment's name will, of course, be different.
 
 ## _Connecting to the App_
 
-The quickest way to connect to your deployed app is with the `flyctl open` command. This will open a browser on the HTTP version of the site. That will automatically be upgraded to an HTTPS secured connection (for the fly.dev domain). 
+The quickest way to connect to your deployed app is with the `flyctl open` command. This will open a browser on the HTTP version of the site. That will automatically be upgraded to an HTTPS secured connection (for the fly.dev domain).
 
-
- to connect to it securely. Add `/name` to `flyctl open` and it'll be appended to the URL as the path and you'll get an extra greeting from the hellofly-python application.
-
+to connect to it securely. Add `/name` to `flyctl open` and it'll be appended to the URL as the path and you'll get an extra greeting from the hellofly-python application.
 
 ## _Bonus Points_
 
@@ -213,6 +215,7 @@ If you want to know what IP addresses the app is using, try `flyctl ips list`:
 ```cmd
 fly ips list
 ```
+
 ```out
 TYPE ADDRESS                             CREATED AT
 v4   213.188.195.22                      2m1s ago
