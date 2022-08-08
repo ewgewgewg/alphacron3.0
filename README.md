@@ -1,6 +1,6 @@
 # alphacron3.0
 
-# adapted from Python-hello-fly-flask, with FLyctl setup for that project is...
+# adapted from Python-hello-fly-flask, with Flyctl setup for that project as...
 
 In our Hands-On section, we show how to deploy a deployable image file using Flyctl. Now we are going to deploy an application from source. In this _Getting Started_ article, we look at how to deploy a Python application on Fly.
 
