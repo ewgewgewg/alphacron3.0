@@ -11,7 +11,7 @@ from lookup import activeCategoryNames
 
 from health_check import health_check
 
-token = os.environ['$TOKEN']
+token = os.environ['TOKEN']
 
 client = discord.Client()
 
