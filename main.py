@@ -9,7 +9,7 @@ from actions.toArchive import toArchive
 from actions.stale import stale
 from lookup import activeCategoryNames
 
-from health_check import health_check
+# from health_check import health_check
 
 token = os.environ['TOKEN']
 
@@ -57,7 +57,7 @@ async def on_message(message):
         for staleItem in staleList:
             print(staleItem.name)
             await staleItem.send(
-                f'Inactivity Warning! This is a stale channel in the category --{message.channel.category.name}--, and has been inactive for greater than the following number of days: {thresholdDays}. In about {lastDays+1} days this channel will be moved to Archive unless new activity appears. Channels with new activity restore to their old category. This is an automatic message.'
+                f'Inactivity Warning! This is a stale channel in the category --{staleItem.category.name}--, and has been inactive for greater than the following number of days: {thresholdDays}. In about {lastDays+1} days this channel will be moved to Archive unless new activity appears. Channels with new activity restore to their old category. This is an automatic message.'
             )
 
         channels = message.guild.channels
@@ -136,5 +136,5 @@ async def on_message(message):
                   f'Restored channel to {restored_category_name} based on activity!'
               )
           
-health_check(client)
+# health_check(client)
 client.run(token)
